@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import 'regenerator-runtime/runtime';
+import React from 'react';
+import { Provider } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
+import './styles/index.scss';
+import store from './common/store/store';
+import RootRouter from './routers/RootRouter';
+
+const App = () => (
+  <Provider store={store}>
+    <RootRouter />
+  </Provider>
+);
 
 export default App;

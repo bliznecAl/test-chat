@@ -1,0 +1,57 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "extends": ["airbnb"],
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "no-console": 0,
+    "react/display-name": 0,
+    "react/forbid-prop-types": [1, {
+      "forbid": ["any"]
+    }],
+    "comma-dangle": 0,
+    "space-before-function-paren": ["error", {
+      "anonymous": "always",
+      "named": "always",
+      "asyncArrow": "always"
+    }],
+    "no-shadow": ["error", { "allow": ["actions"] }],
+    "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
+    "arrow-parens": 0,
+    "arrow-body-style": 0,
+    "react/jsx-filename-extension": 0,
+    "react/require-default-props": 0,
+    "react/no-access-state-in-setstate": 0,
+    "react/prefer-stateless-function": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "no-underscore-dangle": [0, { "allow": [] }],
+    "class-methods-use-this": 0,
+    "func-names": 0,
+    "linebreak-style": 0,
+    "no-trailing-spaces": 0,
+    "global-require": 0,
+    "spaced-comment": 0,
+    "prefer-destructuring": 0,
+    "react/no-array-index-key": 0
+  },
+  "settings": {
+    "react": {
+      "version": "16.6.0"
+    }
+  },
+  "globals": {
+    "__DEV__": true,
+    "ENV": true
+  }
+}
