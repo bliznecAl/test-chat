@@ -54,6 +54,7 @@ module.exports = {
   },
   devServer: {
     contentBase: './src/',
+    disableHostCheck: true,
     historyApiFallback: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
