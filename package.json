@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "env NODE_ENV=development webpack-dev-server --mode development --hot",
+    "start": "env NODE_ENV=development webpack-dev-server --mode development --hot --host 0.0.0.0",
     "build:production": "cross-env-shell NODE_ENV=production webpack",
     "build:development": "cross-env-shell NODE_ENV=production webpack"
   },
@@ -41,11 +41,15 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "apexcharts": "3.7.0",
-    "axios": "^0.19.2",
+    "@draft-js-plugins/emoji": "^4.2.0",
+    "@draft-js-plugins/linkify": "^4.1.0",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "copy-webpack-plugin": "^5.1.1",
+    "draft-js": "^0.11.7",
+    "draft-js-export-html": "^1.4.1",
+    "draft-js-import-html": "^1.4.1",
+    "draft-js-plugins-editor": "^3.0.0",
     "history": "4.7.2",
     "moment": "^2.24.0",
     "namor": "^1.1.1",

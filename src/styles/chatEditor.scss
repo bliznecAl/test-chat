@@ -1,0 +1,32 @@
+.editor-block {
+
+  .DraftEditor-root {
+    min-height: 70px;
+  }
+
+  .emoji-block {
+    position: relative;
+
+    .emoji-button {
+      display: flex;
+      align-items: flex-end;
+      font-size: 38px;
+      border: none;
+      border-radius: $border-radius-sm;
+      width: 2.5rem;
+      height: 2.5rem;
+      vertical-align: text-bottom;
+      text-align: center;
+    }
+    .emoji-list {
+      position: absolute;
+      bottom: 100%;
+      margin-bottom: 8px;
+      right: 0;
+    }
+  }
+
+  .send-button {
+    max-height: 30px;
+  }
+}
