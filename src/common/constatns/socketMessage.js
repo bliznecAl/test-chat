@@ -1,6 +1,7 @@
 export const SOCKET_MESSAGE_TYPES = {
   JOIN: 'join',
-  LEAVE: 'leave',
-  PRESENTATIONS_SLIDE: 'presentationSlide',
+  QUIT: 'quit',
+  READ: 'read status',
+  SEND_MESSAGE: 'new message',
   ERROR: 'error',
 };
