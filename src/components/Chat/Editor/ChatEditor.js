@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import '@draft-js-plugins/emoji/lib/plugin.css';
 import PropTypes from 'prop-types';
 import Editor from 'draft-js-plugins-editor';
-import SelectionState, { EditorState, RichUtils } from 'draft-js';
+import { EditorState, RichUtils, SelectionState } from 'draft-js';
 import isSoftNewlineEvent from 'draft-js/lib/isSoftNewlineEvent';
 import createEmojiPlugin, { defaultTheme } from '@draft-js-plugins/emoji';
 import createLinkifyPlugin from '@draft-js-plugins/linkify';
@@ -80,7 +80,6 @@ class ChatEditor extends PureComponent {
     const message = stateToHTML(_editorState.getCurrentContent());
     sendMessage(message);
     return this.onChangeEditor(EditorState.createEmpty());
-    this.focus();
   }
 
   handleReturn = (e) => {

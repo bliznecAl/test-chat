@@ -55,7 +55,6 @@ const socketReducer = (state = initialState, { type, payload }) => {
       };
 
     case INIT_SOCKET_CONNECTION_ACTIONS.SUCCESS:
-      console.log('!!!');
       return {
         ...state,
         socketConnection: {

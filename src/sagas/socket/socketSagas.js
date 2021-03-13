@@ -12,7 +12,6 @@ export function* connectToSocket () {
     yield put(initSocketConnectionActions.success(socketConnection));
   }
   catch (error) {
-    console.log(error);
     yield put(initSocketConnectionActions.error(error));
 
     throw error;
