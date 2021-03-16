@@ -1,3 +1,12 @@
-.login-block {
+.login-page {
+  position: relative;
   min-height: calc(100vh - 100px);
+
+  &__block {
+    position: absolute;
+    padding: 25px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

@@ -1,8 +1,19 @@
 .chat-block {
-  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
   overflow: hidden;
 
   .message-block {
-    min-height: calc(100vh - 200px);
+    height: calc(100vh - 200px);
+    overflow-y: scroll;
+
+    .message {
+      max-width: fit-content;
+      word-break: break-word;
+      font-size: 14px;
+
+      p {
+        margin: 0;
+      }
+    }
   }
 }

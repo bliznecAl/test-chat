@@ -4,37 +4,38 @@ import { withRouter } from 'react-router-dom';
 import { SOCKET_MESSAGE_TYPES } from '../../common/constatns/socketMessage';
 
 class SocketHandler extends React.Component {
-  componentDidUpdate (prevProps) {
+  componentDidMount () {
     const {
-      connection, sendMessage, allChatMessage, auth
+      connection, saveMessage, setReadStatus
     } = this.props;
-    const { userData } = auth;
     if (connection) {
       connection.addEventListener('message', (e) => {
         if (e && e.data) {
           const parsedData = JSON.parse(e.data);
           const {
-            type, message, id, name
+            type, message, messageId, userId, name, readStatus, sendTime
           } = parsedData;
+
+          const newMessage = {
+            userId,
+            messageId,
+            name,
+            message,
+            readStatus,
+            sendTime
+          };
 
           switch (type) {
             case SOCKET_MESSAGE_TYPES.ERROR:
               return;
 
             case SOCKET_MESSAGE_TYPES.SEND_MESSAGE:
-              const newMessageList = [...allChatMessage];
-              newMessageList.push({
-                id,
-                name,
-                message
-              });
-              sendMessage(newMessageList);
-              if (userData.name !== name) {
-                connection.send(JSON.stringify({ id, [SOCKET_MESSAGE_TYPES.READ]: true }));
-              }
+              saveMessage(newMessage);
               break;
 
-            case SOCKET_MESSAGE_TYPES.JOIN:
+            case SOCKET_MESSAGE_TYPES.READ:
+              setReadStatus(newMessage);
+              break;
             case SOCKET_MESSAGE_TYPES.QUIT:
               break;
 
@@ -57,11 +58,11 @@ class SocketHandler extends React.Component {
 
 SocketHandler.propTypes = {
   connection: PropTypes.object,
-  auth: PropTypes.object,
-  allChatMessage: PropTypes.array,
-  sendMessage: PropTypes.func.isRequired,
-  joinChat: PropTypes.func.isRequired,
-  quitChat: PropTypes.func.isRequired
+  allChatMessages: PropTypes.object,
+  saveMessage: PropTypes.func.isRequired,
+  setReadStatus: PropTypes.func.isRequired,
+  joinChatUser: PropTypes.func.isRequired,
+  quitChatUser: PropTypes.func.isRequired
 };
 
 export default withRouter(SocketHandler);

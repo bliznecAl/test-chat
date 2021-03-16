@@ -6,10 +6,10 @@ class ChatMessages extends PureComponent {
   render () {
     const { allMessages, user } = this.props;
     return (
-      <div className="message-block mt-3 border bg-info rounded">
+      <div id="message-block" className="message-block mt-3 border bg-info rounded">
         {allMessages && (
-          allMessages.map((message, index) => (
-            <ChatMessagesList key={index} message={message} user={user}/>
+          Object.keys(allMessages).map((message, index) => (
+            <ChatMessagesList key={index} message={allMessages[message]} user={user} />
           ))
         )}
       </div>
@@ -18,7 +18,7 @@ class ChatMessages extends PureComponent {
 }
 
 ChatMessages.propTypes = {
-  allMessages: PropTypes.array,
+  allMessages: PropTypes.object,
   user: PropTypes.object
 };
 

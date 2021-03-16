@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import SocketHandler from '../../components/SocketHandler/SocketHandler';
-import { joinChatActions, quitChatActions, sendMessageActions } from '../../actions/socketActions/socketChatActions';
+import { chatActions } from '../../actions/socketActions/socketChatActions';
 
 const mapStateToProps = ({
   socket: { socketConnection },
@@ -14,9 +14,10 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = {
-  sendMessage: sendMessageActions.success,
-  joinChat: joinChatActions.success,
-  quitChat: quitChatActions.success
+  saveMessage: chatActions.saveMessage,
+  setReadStatus: chatActions.setReadMessageStatus,
+  joinChatUser: chatActions.joinNewUser,
+  quitChatUser: chatActions.quitUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SocketHandler);
