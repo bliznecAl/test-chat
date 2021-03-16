@@ -3,7 +3,7 @@ import {
   Form, Label, Input, Button, FormGroup, Container
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import namor from "namor";
+import uniq from 'uniqid';
 
 class Login extends Component {
   constructor (props) {
@@ -22,7 +22,7 @@ class Login extends Component {
     const { logIn, history } = this.props;
     const { userName } = this.state;
     const user = {
-      id: namor.generate(),
+      id: uniq(),
       name: userName
     };
     logIn(user);
@@ -32,15 +32,13 @@ class Login extends Component {
 
   render () {
     return (
-      <Container>
-        <div className="login-block">
-          <Form inline>
-            <FormGroup className="mb-2 me-sm-2 mb-sm-0">
-              <Label for="exampleEmail" className="me-sm-2">Email</Label>
-              <Input type="text" name="email" id="name" placeholder="enter your name" onChange={this.inputValue} />
-            </FormGroup>
-            <Button onClick={this.logIn}>Submit</Button>
-          </Form>
+      <Container className="login-page">
+        <div className="text-center login-page__block">
+          <p>Enter your name to enter the chat</p>
+          <div className="d-flex">
+            <Input type="text" name="email" id="name" placeholder="enter your name" onChange={this.inputValue} />
+            <Button className="ml-2" size="sm" onClick={this.logIn}>Submit</Button>
+          </div>
         </div>
       </Container>
     );

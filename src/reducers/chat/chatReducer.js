@@ -1,16 +1,22 @@
-import { SEND_MESSAGE_ACTIONS, sendMessageActions } from '../../actions/socketActions/socketChatActions';
+import { CHAT_ACTION } from '../../actions/socketActions/socketChatActions';
 
 const initialState = {
-  allChatMessage: [],
+  allChatMessages: {},
   error: null,
 };
 
 const chatReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case SEND_MESSAGE_ACTIONS.SUCCESS:
+    case CHAT_ACTION.SAVE_NEW_MESSAGE:
       return {
         ...state,
-        allChatMessage: payload
+        allChatMessages: { ...state.allChatMessages, [payload.messageId]: payload }
+      };
+
+    case CHAT_ACTION.SET_READ_MESSAGE_STATUS:
+      return {
+        ...state,
+        allChatMessages: { ...state.allChatMessages, [payload.messageId]: payload }
       };
 
     default:
