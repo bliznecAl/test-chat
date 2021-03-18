@@ -10,17 +10,9 @@ import { SOCKET_MESSAGE_TYPES } from '../../common/constatns/socketMessage';
 import SocketHandler from '../../containers/SocketHandler/SocketHandlerContainer';
 
 class ChatContainer extends PureComponent {
-  constructor (props) {
-    super(props);
-
-    this.state = {
-      readMessageList: []
-    };
-  }
-
   componentDidMount () {
     const chatBlock = document.getElementById('message-block');
-    document.addEventListener('mousemove', (e) => {
+    document.addEventListener('mousemove', () => {
       if (!document.hidden
           && ((chatBlock.clientHeight + chatBlock.scrollTop) === chatBlock.scrollHeight)) {
         this.sendReadMessageStatus();
@@ -41,8 +33,17 @@ class ChatContainer extends PureComponent {
     }
   }
 
-  componentDidUpdate () {
-    const { chat } = this.props;
+  componentWillUnmount() {
+
+  }
+
+  componentDidUpdate (prevProps) {
+    const { connection, auth: { userData } } = this.props;
+    if ((connection && prevProps.connection !== connection) && userData.id) {
+      connection.send(JSON.stringify(
+        { type: SOCKET_MESSAGE_TYPES.JOIN, name: userData.name, userId: userData.id }
+      ));
+    }
     const messageBlock = document.getElementById('message-block');
     if (!document.hidden) {
       this.sendReadMessageStatus();
@@ -56,13 +57,21 @@ class ChatContainer extends PureComponent {
     const { connection, chat, auth } = this.props;
     const { allChatMessages } = chat;
     const { userData } = auth;
-    // eslint-disable-next-line max-len
-    const aa = Object.keys(allChatMessages).filter(message => allChatMessages[message].userId !== userData.id
-        && !allChatMessages[message].readStatus);
-    if (!aa.length) return false;
+    const readMessageList = [];
+    Object.keys(allChatMessages).map(message => {
+      if (allChatMessages[message].userId !== userData.id
+          && !allChatMessages[message].readStatus
+          && !allChatMessages[message].type) {
+        if (allChatMessages[message].type) return false;
+        readMessageList.push(allChatMessages[message]);
+      }
+      return false;
+    });
+    if (!readMessageList.length) return false;
     return Object.keys(allChatMessages).forEach(item => {
       const message = allChatMessages[item];
-      if (message.userId !== userData.id && !message.readStatus) {
+      if (message.userId !== userData.id && !message.readStatus && !message.type) {
+        console.log(message);
         const sendMessage = {
           ...message,
           [SOCKET_MESSAGE_TYPES.READ]: true,

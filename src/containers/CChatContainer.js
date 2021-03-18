@@ -20,6 +20,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = {
   startSocket: initSocketConnectionActions.request,
   logIn: authChatActions.logInUser,
+  logOff: authChatActions.quitUser,
   sendReadStatus: chatActions.sendReadMessageStatus
 };
 

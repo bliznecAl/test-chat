@@ -6,6 +6,10 @@
     height: calc(100vh - 200px);
     overflow-y: scroll;
 
+    .join-status {
+      max-width: fit-content;
+    }
+
     .message {
       max-width: fit-content;
       word-break: break-word;

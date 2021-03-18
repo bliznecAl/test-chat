@@ -19,6 +19,12 @@ const chatReducer = (state = initialState, { type, payload }) => {
         allChatMessages: { ...state.allChatMessages, [payload.messageId]: payload }
       };
 
+    case CHAT_ACTION.JOIN_NEW_USER:
+      return {
+        ...state,
+        allChatMessages: { ...state.allChatMessages, [payload.userId]: payload }
+      };
+
     default:
       return state;
   }
