@@ -38,7 +38,10 @@ class ChatContainer extends PureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    const { connection, auth: { userData } } = this.props;
+    const { connection, auth: { userData }, history } = this.props;
+    if (!Object.keys(userData).length) {
+      history.push('/login');
+    }
     if ((connection && prevProps.connection !== connection) && userData.id) {
       connection.send(JSON.stringify(
         { type: SOCKET_MESSAGE_TYPES.JOIN, name: userData.name, userId: userData.id }
@@ -71,7 +74,6 @@ class ChatContainer extends PureComponent {
     return Object.keys(allChatMessages).forEach(item => {
       const message = allChatMessages[item];
       if (message.userId !== userData.id && !message.readStatus && !message.type) {
-        console.log(message);
         const sendMessage = {
           ...message,
           [SOCKET_MESSAGE_TYPES.READ]: true,

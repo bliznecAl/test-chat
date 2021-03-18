@@ -6,7 +6,7 @@ import { SOCKET_MESSAGE_TYPES } from '../../common/constatns/socketMessage';
 class SocketHandler extends React.Component {
   componentDidMount () {
     const {
-      connection, saveMessage, setReadStatus, joinChatUser
+      connection, saveMessage, setReadStatus, joinChatUser, quitChatUser
     } = this.props;
     if (connection) {
       connection.addEventListener('message', (e) => {
@@ -38,6 +38,9 @@ class SocketHandler extends React.Component {
               break;
             case SOCKET_MESSAGE_TYPES.JOIN:
               joinChatUser({ name, type, userId });
+              break;
+            case SOCKET_MESSAGE_TYPES.QUIT:
+              quitChatUser({ name, type, userId });
               break;
 
             default:

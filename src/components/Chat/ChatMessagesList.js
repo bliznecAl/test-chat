@@ -10,7 +10,7 @@ class ChatMessagesList extends PureComponent {
         {message.type ? (
           <div className="bg-transparent w-100 my-2 text-center">
             <span className="text-info p-1 my-2 bg-light text-break join-status rounded">
-              {message.name} join in chat
+              {message.name} {message.type} the chat
             </span>
           </div>
         ) : (
