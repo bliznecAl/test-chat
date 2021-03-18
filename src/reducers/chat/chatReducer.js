@@ -2,6 +2,7 @@ import { CHAT_ACTION } from '../../actions/socketActions/socketChatActions';
 
 const initialState = {
   allChatMessages: {},
+  onlineUserList: [],
   error: null,
 };
 
@@ -22,7 +23,14 @@ const chatReducer = (state = initialState, { type, payload }) => {
     case CHAT_ACTION.JOIN_NEW_USER:
       return {
         ...state,
-        allChatMessages: { ...state.allChatMessages, [payload.userId]: payload }
+        allChatMessages: { ...state.allChatMessages, [`${payload.userId} join`]: payload },
+        onlineUserList: [...state.onlineUserList, payload]
+      };
+    case CHAT_ACTION.QUIT_USER:
+      return {
+        ...state,
+        allChatMessages: { ...state.allChatMessages, [`${payload.userId} quit`]: payload },
+        // onlineUserList: [state.onlineUserList.filter(user => user.userId !== payload.userId)]
       };
 
     default:

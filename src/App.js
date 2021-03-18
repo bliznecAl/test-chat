@@ -5,12 +5,12 @@ import { Provider } from 'react-redux';
 import './styles/index.scss';
 import store from './common/store/store';
 import RootRouter from './routers/RootRouter';
-import Header from './components/common/Header';
 import Footer from './components/common/Footer';
+import CHeader from './containers/Header/CHeader';
 
 const App = () => (
   <Provider store={store}>
-    <Header />
+    <CHeader />
     <RootRouter />
     <Footer />
   </Provider>
