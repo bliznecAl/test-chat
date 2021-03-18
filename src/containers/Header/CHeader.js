@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { authChatActions } from '../../actions/logIn/logInActions';
-import { chatActions } from '../../actions/socketActions/socketChatActions';
 import Header from '../../components/common/Header';
+import {chatActions} from '../../actions/socketActions/socketChatActions';
 
 const mapStateToProps = ({
   socket: { socketConnection: { connection } },
@@ -13,7 +13,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = {
   logOff: authChatActions.quitUser,
-  exiChatUser: chatActions.quitUser
+  quitChat: chatActions.quitChat
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

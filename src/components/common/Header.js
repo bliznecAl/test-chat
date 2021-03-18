@@ -6,7 +6,7 @@ import { SOCKET_MESSAGE_TYPES } from '../../common/constatns/socketMessage';
 class Header extends PureComponent {
   logOffUser = () => {
     const {
-      logOff, connection, auth: { userData }
+      logOff, connection, auth: { userData }, quitChat
     } = this.props;
     localStorage.removeItem('chatUser');
     connection.send(JSON.stringify(
@@ -14,6 +14,7 @@ class Header extends PureComponent {
     ));
     logOff();
     connection.close();
+    quitChat();
   };
 
   render () {
@@ -30,9 +31,9 @@ class Header extends PureComponent {
 
 Header.propTypes = {
   auth: PropTypes.object.isRequired,
-  connection: PropTypes.object.isRequired,
+  connection: PropTypes.object,
   logOff: PropTypes.func.isRequired,
-  exiChatUser: PropTypes.func.isRequired
+  quitChat: PropTypes.func.isRequired,
 };
 
 export default Header;
