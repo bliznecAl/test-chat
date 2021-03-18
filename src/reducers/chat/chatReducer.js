@@ -20,12 +20,20 @@ const chatReducer = (state = initialState, { type, payload }) => {
         allChatMessages: { ...state.allChatMessages, [payload.messageId]: payload }
       };
 
+    case CHAT_ACTION.QUIT_CHAT:
+      return {
+        ...state,
+        allChatMessages: {},
+        onlineUserList: []
+      };
+
     case CHAT_ACTION.JOIN_NEW_USER:
       return {
         ...state,
         allChatMessages: { ...state.allChatMessages, [`${payload.userId} join`]: payload },
         onlineUserList: [...state.onlineUserList, payload]
       };
+
     case CHAT_ACTION.QUIT_USER:
       return {
         ...state,

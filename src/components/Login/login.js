@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Form, Label, Input, Button, FormGroup, Container
+  Input, Button, Container
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import uniq from 'uniqid';
